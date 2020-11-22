@@ -1,4 +1,5 @@
 //! Reads generic data and label files in the MNIST format.
+
 use std::{fs::File, io::Read};
 
 /// Reads MNIST format labels.
