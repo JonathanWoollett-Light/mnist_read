@@ -1,26 +1,21 @@
-//! Reads data&label files in the MNIST format.
-//! 
-//! MNIST, EMNIST, etc.
-use std::{
-    fs::File,
-    io::Read,
-};
+//! Reads generic data and label files in the MNIST format.
+use std::{fs::File, io::Read};
 
-/// Reads MNIST format labels
+/// Reads MNIST format labels.
 ///
-/// Returns `Vec<usize>` (length = number of labels)
+/// Returns `Vec<usize>` (length = number of labels).
 /// ```
 /// let test_labels: Vec<u8> = mnist_read::read_labels("mnist/t10k-labels.idx1-ubyte");
 ///
 /// assert_eq!(test_labels.len(),10000);
-/// 
+///
 /// for label in test_labels {
 ///     assert!(label <= 9)
 /// }
 /// ```
-/// For ndarray one might do:
+/// For [ndarray](https://docs.rs/ndarray/) one might do:
 /// ```
-/// let u8_labels:Vec<u8> = mnist_read::read_data("mnist/t10k-labels.idx1-ubyte");
+/// let u8_labels:Vec<u8> = mnist_read::read_labels("mnist/t10k-labels.idx1-ubyte");
 /// let usize_labels:Vec<usize> = u8_labels.into_iter().map(|l|l as usize).collect();
 /// let array_labels:ndarray::Array2<usize> = ndarray::Array::from_shape_vec((10000, 1), usize_labels).expect("Bad labels");
 /// assert_eq!(array_labels.shape(),&[10000,1]);
@@ -35,15 +30,15 @@ pub fn read_labels(path: &str) -> Vec<u8> {
     // Removes 1st 7 bytes of meta data & returns
     return label_buffer_u8.drain(8..).collect();
 }
-/// Reads MNIST format data
+/// Reads MNIST format data.
 ///
-/// Returns `Vec<u8>` (length = number of examples * size of examples)
+/// Returns `Vec<u8>` (length = number of examples * size of examples).
 /// ```
 /// let test_data: Vec<u8> = mnist_read::read_data("mnist/t10k-images.idx3-ubyte");
 ///
 /// assert_eq!(test_data.len(),10000*28*28);
 /// ```
-/// For ndarray one might do:
+/// For [ndarray](https://docs.rs/ndarray/) one might do:
 /// ```
 /// let u8_data:Vec<u8> = mnist_read::read_data("mnist/t10k-images.idx3-ubyte");
 /// let f32_data:Vec<f32> = u8_data.into_iter().map(|d|d as f32 / 255f32).collect();
