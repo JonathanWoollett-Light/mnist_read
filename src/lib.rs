@@ -23,7 +23,7 @@ use std::{fs::File, io::Read};
 /// ```
 pub fn read_labels(path: &str) -> Vec<u8> {
     // Reads file
-    let mut file = File::open(path).unwrap();
+    let mut file = File::open(path).expect("Couldn't open MNIST labels");
     let mut label_buffer_u8: Vec<u8> = Vec::new();
     file.read_to_end(&mut label_buffer_u8)
         .expect("Couldn't read MNIST labels");
@@ -48,7 +48,7 @@ pub fn read_labels(path: &str) -> Vec<u8> {
 /// ```
 pub fn read_data(path: &str) -> Vec<u8> {
     // Reads file
-    let mut file = File::open(path).unwrap();
+    let mut file = File::open(path).expect("Couldn't open MNIST data");
     let mut image_buffer_u8: Vec<u8> = Vec::new();
     file.read_to_end(&mut image_buffer_u8)
         .expect("Couldn't read MNIST data");
