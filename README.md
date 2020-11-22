@@ -1,6 +1,11 @@
 # MNIST Read
 
 
+[![Crates.io](https://img.shields.io/crates/v/mnist_read)](https://crates.io/crates/mnist_read)
+[![lib.rs.io](https://img.shields.io/crates/v/mnist_read?color=blue&label=lib.rs)](https://lib.rs/crates/mnist_read)
+[![docs](https://img.shields.io/crates/v/mnist_read?color=yellow&label=docs)](https://docs.rs/mnist_read)
+
+
 Reads generic data and label files in the MNIST file format for Rust.
 
 As simple as that.
